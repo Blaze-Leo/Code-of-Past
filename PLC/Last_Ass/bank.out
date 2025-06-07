@@ -1,0 +1,40 @@
+Customer 0 added to teller queue with token number 0
+Customer 9 added to teller queue with token number 1
+Customer 8 added to teller queue with token number 2
+Customer 7 added to teller queue with token number 3
+Customer 6 added to teller queue with token number 4
+Customer 5 added to teller queue with token number 5
+Customer 4 added to teller queue with token number 6
+Customer 3 added to teller queue with token number 7
+Customer 2 added to teller queue with token number 8
+Customer 1 added to teller queue with token number 9
+Customer 9 with token number 1 serviced by teller 1
+Customer 0 with token number 0 serviced by teller 0
+Customer 9 added to manager queue with token number 1000 by teller 1
+Customer 8 with token number 2 serviced by teller 1
+Customer 0 added to manager queue with token number 1001 by teller 0
+Customer 7 with token number 3 serviced by teller 0
+Customer 7 added to manager queue with token number 1003 by teller 0
+Customer 6 with token number 4 serviced by teller 0
+Customer 6 added to manager queue with token number 1004 by teller 0
+Customer 5 with token number 5 serviced by teller 0
+Customer 5 added to manager queue with token number 1005 by teller 0
+Customer 4 with token number 6 serviced by teller 0
+Customer 8 added to manager queue with token number 1002 by teller 1
+Customer 3 with token number 7 serviced by teller 1
+Customer 3 added to manager queue with token number 1007 by teller 1
+Customer 2 with token number 8 serviced by teller 1
+Customer 2 added to manager queue with token number 1008 by teller 1
+Customer 1 with token number 9 serviced by teller 1
+Customer 1 added to manager queue with token number 1009 by teller 1
+Customer 9 with token number 1000 serviced by manager
+Customer 0 with token number 1001 serviced by manager
+Customer 8 with token number 1002 serviced by manager
+Customer 4 added to manager queue with token number 1006 by teller 0
+Customer 7 with token number 1003 serviced by manager
+Customer 6 with token number 1004 serviced by manager
+Customer 5 with token number 1005 serviced by manager
+Customer 4 with token number 1006 serviced by manager
+Customer 3 with token number 1007 serviced by manager
+Customer 2 with token number 1008 serviced by manager
+Customer 1 with token number 1009 serviced by manager

@@ -1,0 +1,21 @@
+Write a Java program to simulate a bank, which operates as follows. Customers enter the bank at random times, and are assigned a token number in sequential order. They join a single teller queue. The bank has a number of tellers, and whenever each teller is free, he calls the next customer forward, who is the one with the least token number who is as yet unserved. Once the teller services the customer, she is assigned a new token number and made to join the manager queue. (We will assume that the teller token numbers start with 0, while the manager token numbers start with 1000.) The manager calls forth the next customer in her queue whenever she becomes free. This is the one with the least manager token number who is as yet unserved.
+
+Write a Java implementation of this system. Since this is a fairly intricate system, we specify it in more detail.
+
+The attached UseBank.java file contains code that creates a Bank object with a specific number of tellers, and spawns a specific number of customer threads, each of which makes a call to the Bank.enter(), providing its id as argument. Once all the customers have been spawned, the UseBank class calls the setLimit method, which informs the bank of the total number of customers entered in the system. The bank has to use this information to terminate some loops.
+
+The Bank class needs to store enough information to generate tokens for the teller queue and manager queue, and maintain the queues themselves. For tokens, we use objects belonging to the class AtomicInteger, which supports the methods get(), set(n), and getAndIncrement(). This class can be used by importing java.util.concurrent.atomic.AtomicInteger.
+
+For the queues, we use the PriorityBlockingQueue class, which can be accessed by importing java.util.concurrent.PriorityBlockingQueue. The two methods we need to use are queue.put(element) and queue.poll(time, TimeUnit). For accessing time units, import java.util.concurrent.TimeUnit. The method put(element) adds element to the queue, and poll tries to remove the head of the queue (if the queue is nonempty). If the queue is empty, it times out after the specified time, and returns a null object. Your code should handle this situation appropriately.
+
+Our queues are priority queues, so we can specify the priority, based on which elements in the queue are ordered. Here is how to achieve this. Assume we have a Cust class with fields like id and token. We can specify that a particular queue should use the token field to compute priority, by means of the following code:
+
+PriorityBlockingQueue q = new PriorityBlockingQueue<>(100, Comparator.comparingInt(c -> c.token));
+
+The first argument gives the initial size to be allocated for the queue, but the queue is unbounded. It will grow to make space for more elements.
+
+Our queues also handle synchronization automatically. No two threads can executing methods of the same priority blocking queue simultaneously.
+
+Your code needs to print diagnostics as indicated in the sample output (in the file bank.out). Note that customers are added to the teller queue in order of token number, and processed by the manager in order of (the manager) token number. Further, each teller services customers in ascending order of token numbers. To add some coherence to the output, you might have to make some methods synchronized, and make some blocks of code atomic by enclosing them inside synchronized (this) { ... }.
+
+Note: We will test your solutions using UseBank.java. We have also attached a skeletal Bank.java. Do not add any package declarations, or a main() method as part of your solution. Just complete Bank.java and submit a single file. Any submissions that violate these guidelines risk not being graded.

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Micromouse">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Micromouse/Gerber_PCB_PCB-V3.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Micromouse/OBJ_PCB_PCB-V3_2022-12-11.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
