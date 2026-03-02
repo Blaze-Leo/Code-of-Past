@@ -1,0 +1,26 @@
+#!/bin/bash
+# --- Bob (Receiver) ---
+# Bob decrypts and verifies the message sent by Alice.
+
+# Inputs:
+#   - k.enc, iv.bin, test.txt.enc, signature.bin
+#   - bob_private.pem     : Bob’s private key (to decrypt)
+#   - alice_public.pem    : Alice’s public key (to verify signature)
+# Output:
+#   - test.txt            : decrypted plaintext
+
+# 1. Decrypt encapsulated KEM key using Bob’s private key
+openssl pkeyutl -decrypt -inkey john_private.pem -in k.enc -out k.bin \
+  -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+
+# 2. Derive AES-256 key = SHA-256(k)
+openssl dgst -sha256 -binary k.bin > key.bin
+KEYHEX=$(xxd -p key.bin | tr -d '\n')
+IVHEX=$(xxd -p iv.bin | tr -d '\n')
+
+# 3. Decrypt ciphertext
+openssl enc -d -aes-256-cbc -in anurag_gupta.txt.enc -out anurag_gupta.txt -K $KEYHEX -iv $IVHEX
+
+# 4. Verify signature (Alice’s signature on ciphertext)
+openssl dgst -sha1 -verify anurag_public.pem -signature signature.bin anurag_gupta.txt.enc
+

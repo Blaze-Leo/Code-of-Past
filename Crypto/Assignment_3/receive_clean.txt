@@ -1,0 +1,7 @@
+
+openssl pkeyutl -decrypt -inkey john_private.pem -in k.enc -out k.bin -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+openssl dgst -sha256 -binary k.bin > key.bin
+KEYHEX=$(xxd -p key.bin | tr -d '\n')
+IVHEX=$(xxd -p iv.bin | tr -d '\n')
+openssl enc -d -aes-256-cbc -in anurag_gupta.txt.enc -out anurag_gupta.txt -K $KEYHEX -iv $IVHEX
+openssl dgst -sha1 -verify anurag_public.pem -signature signature.bin anurag_gupta.txt.enc

@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, graphicx, geometry, caption}
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+
+
+\title{Decrypting a Vigen\`ere Cipher with Known Key Length}
+\author{Anurag Gupta}
+\date{31 August 2025}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+The goal was to decrypt an encrypted text that had been 
+encoded with the \textbf{Vigen\`ere cipher}. 
+The ciphertext consisted of lowercase alphabetic characters, 
+and the \textbf{key length }was known in advance to be \textbf{5}. 
+Using this information, I applied \textbf{frequency analysis} 
+to guess the shifts of each key character, 
+constructed the decryption key, and successfully recovered 
+the text.
+
+\section{Methodology}
+
+\subsection{Reading Input Files}
+The encrypted text was stored in a txt file and loaded into the script.
+
+\subsection{Cipher Properties}
+\begin{itemize}
+    \item Cipher: Vigen\`ere (polyalphabetic substitution).
+    \item Alphabet: lowercase English letters (a--z).
+    \item Key length: 5.
+\end{itemize}
+
+\subsection{Frequency Analysis}
+The ciphertext was divided into 5 sub-sequences by taking every 5th character, corresponding to each key position.
+
+For each subsequence:
+\begin{enumerate}
+    \item Count letter frequencies using Python's \texttt{Counter}.
+    \item Plot bar charts of letters vs. counts using \texttt{matplotlib}.
+    \item Compare the distribution with known English frequencies (``e'' is most common, followed by ``t'', ``a''...).
+\end{enumerate}
+
+From this, I made educated guesses about which ciphertext peak corresponded to which plaintext letter.
+
+\subsection{Key Guessing}
+Suppose, in one subsequence, the most frequent letter was ``c''. If we assume it corresponds to ``e'' (most frequent in English), then the shift is:
+
+\[
+k = (\texttt{ord(c)} - \texttt{ord(e)}) \bmod 26 = 24 \rightarrow y
+\]
+
+This was repeated for all 5 positions.  
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Position & Assumed Plaintext & Cipher Peak & Shift & Letter \\
+\hline
+0 & e & c & (c-e) mod 26 = 24 & y\\
+1 & e & e & (e-e) mod 26 = 0 & a\\
+2 & e & q & (q-e) mod 26 = 12 & m\\
+3 & t & d & (d-t) mod 26 = 10 & k\\
+4 & e & b & (b-e) mod 26 = 23 & x\\
+\hline
+\end{tabular}
+\end{center}
+
+This produced a letter key which is \textbf{yamkx}
+
+\subsection{Decryption}
+Once the key was determined, the decryption process was straightforward:
+
+For each ciphertext character $c_i$ at position $i$ we get a decrypted charachter $d_i$:
+\[
+d_i = \Big( ord(c_i) - ord(k_{i \bmod 5})  \Big) \bmod 26 + ord(a)
+\]
+
+This was implemented in the \texttt{decrypt\_text} function.
+
+\subsection{Output}
+Two files were written:
+\begin{itemize}
+    \item Decrypted plaintext (\texttt{decrypt.txt})
+    \item Guessed key (\texttt{key\_guess.txt})
+\end{itemize}
+
+\section{Results}
+\begin{itemize}
+    \item The frequency plots revealed the relative shifts of each cipher.
+    \item By aligning ciphertext peaks with expected plaintext peaks, and guessing if the
+      decrypted english text makes sense I was able to guess a 5-character key.
+    \item The ciphertext was successfully decrypted using the key guessed from the relative shifts.
+\end{itemize}
+
+\section{Frequency Analysis}
+
+This is the freequency plots for the encrypted text (${c_i \bmod 5}$).
+
+\includegraphics[width=0.5\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/p1.png}
+\includegraphics[width=0.5\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/p2.png}
+\includegraphics[width=0.5\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/p3.png}
+\includegraphics[width=0.5\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/p4.png}
+\includegraphics[width=0.5\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/p5.png}
+
+\section{Output Analysis}
+
+Thisis the alphabet frequency plot of my decrypted message.
+
+\includegraphics[width=0.75\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/final_plot.png}
+
+
+This is the plot of average letter frequncies in english from wikipedia.
+
+\includegraphics[width=0.8\textwidth]{/mnt/Personal/Projects/Micro_Codes/Python/Crypto/Assignment_1/plots/normal.png}
+
+As we can see that my plot closely represents the expected plot from wikipedia which shows 
+that my output is a proper decrypted english message.
+
+\end{document}

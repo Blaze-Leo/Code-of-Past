@@ -1,0 +1,12 @@
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out anurag_private.pem
+openssl rsa -in anurag_private.pem -pubout -out anurag_public.pem
+openssl rand 32 > k.bin
+openssl pkeyutl -encrypt -pubin -inkey john_public.pem -in k.bin -out k.enc -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+openssl dgst -sha256 -binary k.bin > key.bin
+openssl rand 16 > iv.bin
+KEYHEX=$(xxd -p key.bin | tr -d '\n')
+IVHEX=$(xxd -p iv.bin | tr -d '\n')
+openssl enc -aes-256-cbc -in anurag_gupta.txt -out anurag_gupta.txt.enc -K $KEYHEX -iv $IVHEX
+openssl dgst -sha1 -sign anurag_private.pem -out signature.bin anurag_gupta.txt.enc
+
+

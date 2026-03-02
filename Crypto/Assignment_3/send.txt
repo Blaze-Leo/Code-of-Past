@@ -1,0 +1,46 @@
+#!/bin/bash
+# --- Alice (Sender) ---
+# Alice encrypts for Bob and signs with her own private key.
+
+# Inputs:
+#   - test.txt             : plaintext message
+#   - john_public.pem       : Bob’s public key (to encrypt)
+#   - anurag_private.pem    : Alice’s private key (to sign)
+# Outputs to send:
+#   - k.enc, iv.bin, test.txt.enc, signature.bin
+
+
+# private and public
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out anurag_private.pem
+openssl rsa -in anurag_private.pem -pubout -out anurag_public.pem
+
+
+
+# 1. Generate random key (KEM secret)
+openssl rand 32 > k.bin
+
+# 2. Encapsulate key with Bob's public key (RSA-OAEP, SHA-256)
+openssl pkeyutl -encrypt -pubin -inkey john_public.pem -in k.bin -out k.enc \
+  -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+
+# 3. Derive AES-256 key = SHA-256(k)
+openssl dgst -sha256 -binary k.bin > key.bin
+
+# 4. Generate 16-byte random IV for AES-CBC
+openssl rand 16 > iv.bin
+
+# 5. Convert key & IV to hex
+KEYHEX=$(xxd -p key.bin | tr -d '\n')
+IVHEX=$(xxd -p iv.bin | tr -d '\n')
+
+# 6. Encrypt plaintext using AES-256-CBC
+openssl enc -aes-256-cbc -in anurag_gupta.txt -out anurag_gupta.txt.enc -K $KEYHEX -iv $IVHEX
+
+# 7. Sign ciphertext with Alice’s private key (SHA-1 digest)
+openssl dgst -sha1 -sign anurag_private.pem -out signature.bin anurag_gupta.txt.enc
+
+
+# --- Files to send to Bob ---
+# echo "Send these files to Bob:"
+# echo "  k.enc, iv.bin, test.txt.enc, signature.bin"
+

@@ -1,0 +1,12 @@
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out debmalya_private.pem
+openssl rsa -in debmalya_private.pem -pubout -out debmalya_public.pem
+openssl rand 32 > k.bin
+openssl pkeyutl -encrypt -pubin -inkey john_public.pem -in k.bin -out k.enc -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+openssl dgst -sha256 -binary k.bin > key.bin
+openssl rand 16 > iv.bin
+KEYHEX=$(xxd -p key.bin | tr -d '\n')
+IVHEX=$(xxd -p iv.bin | tr -d '\n')
+openssl enc -aes-256-cbc -in debmalya_hazra.txt -out debmalya_hazra.txt.enc -K $KEYHEX -iv $IVHEX
+openssl dgst -sha1 -sign debmalya_private.pem -out signature.bin debmalya_hazra.txt.enc
+
+
