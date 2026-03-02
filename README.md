@@ -11,3 +11,6 @@ Code of PLC for CMI BSC2023 - Year 2.
 
 Code of Networking for CMI BSC2023 - Year 2.
 
+Code of Crypto for CMI BSC2023 - Year 3.
+
+Code of PLC for CMI BSC2023 - Year 3.
