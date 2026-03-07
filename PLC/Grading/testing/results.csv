@@ -1,0 +1,41 @@
+username,message,score,percentage
+eashanr.ug2024,,100.0/100.0,100.00%
+abhinava.ug2024,,100.0/100.0,100.00%
+adityav.ug2024,"FAILED: Expected ""(3 + 4)"" but got ""3+4"" | FAILED: Expected ""((5 + 6) * 2)"" but got ""5+6*2"" | FAILED: Expected ""(2 + (3 * 4))"" but got ""2+3*4"" | FAILED: Expected ""((22 + 5) * 3)"" but got ""22+5*3"" | FAILED: Expected ""(10 - 3)"" but got ""10-3"" | FAILED: Expected ""(3 - 10)"" but got ""3-10"" | FAILED: Expected ""((5 - 2) * 3)"" but got ""5-2*3"" | FAILED: Expected ""(5 - (2 * 3))"" but got ""5-2*3""",85.0/100.0,85.00%
+agastya.ug2024,isEmpty marked as isempty,100.0/100.0,95.0%
+agnesrc.ug2024,,100.0/100.0,100.00%
+anayasingh.ug2024,,100.0/100.0,100.00%
+animikha.ug2024,,100.0/100.0,100.00%
+anirudas.ug2024,FAILED: SubExpr incorrect,97.0/100.0,97.00%
+anwessd.ug2024,,100.0/100.0,100.00%
+anyabasu.ug2024,,100.0/100.0,100.00%
+aritram.ug2024,,100.0/100.0,100.00%
+arjuna.ug2024,"FAILED: Expected ""(3 + 4)"" but got ""3+4"" | FAILED: Expected ""((5 + 6) * 2)"" but got ""5+6*2"" | FAILED: Expected ""(2 + (3 * 4))"" but got ""2+3*4"" | FAILED: Expected ""((22 + 5) * 3)"" but got ""22+5*3"" | FAILED: Expected ""(10 - 3)"" but got ""10-3"" | FAILED: Expected ""(3 - 10)"" but got ""3-10"" | FAILED: Expected ""((5 - 2) * 3)"" but got ""5-2*3"" | FAILED: Expected ""(5 - (2 * 3))"" but got ""5-2*3""",85.0/100.0,85.00%
+ashwandhp.ug2024,,100.0/100.0,100.00%
+ayanb.ug2024,,100.0/100.0,100.00%
+ayushj.ug2024,,100.0/100.0,100.00%
+chinmayap.ug2024,,100.0/100.0,100.00%
+chinmayeem.mcs2025,"FAILED: Expected ""(3 + 4)"" but got ""3+4"" | FAILED: Expected ""((5 + 6) * 2)"" but got ""5+6*2"" | FAILED: Expected ""(2 + (3 * 4))"" but got ""2+3*4"" | FAILED: Expected ""((22 + 5) * 3)"" but got ""22+5*3"" | FAILED: Expected ""(10 - 3)"" but got ""10-3"" | FAILED: Expected ""(3 - 10)"" but got ""3-10"" | FAILED: Expected ""((5 - 2) * 3)"" but got ""5-2*3"" | FAILED: Expected ""(5 - (2 * 3))"" but got ""5-2*3""Stack doesn't have a default constructor",85.0/100.0,80.0%
+davincp.ug2024,"NumExpr(Expr e1, Expr e2, int value) should have been just NumExpr(int value)",100.0/100.0,95.0%
+dhruvmp.mcs2025,for (Token t : toklist) doesn't work if not set to java.lang.Iterable. Also class Iter was set to private instead of public,100.0/100.0,90.0%
+karang.ug2024,,100.0/100.0,100.00%
+keerthanam.ug2024,,100.0/100.0,100.00%
+krisha.ug2024,,100.0/100.0,100.00%
+kushm.mcs2025,,100.0/100.0,100.00%
+malaym.ug2024,,100.0/100.0,100.00%
+mohakc.ug2024,,100.0/100.0,100.00%
+moirangthem.ug2024,,100.0/100.0,100.00%
+mounobd.ug2024,,100.0/100.0,100.00%
+neelsinha.ug2024,,100.0/100.0,100.00%
+piyushj.ug2024,,100.0/100.0,100.00%
+pranathk.ug2024,,100.0/100.0,100.00%
+priyansuk.ug2024,,100.0/100.0,100.00%
+rohanr.ug2024,,100.0/100.0,100.00%
+ronaka.mcs2025,,100.0/100.0,100.00%
+sanjit.ug2023,,100.0/100.0,100.00%
+sayeedikram.ug2024,,100.0/100.0,100.00%
+shamim.ug2024,,100.0/100.0,100.00%
+siddharthc.ug2024,,100.0/100.0,100.00%
+ssalim.ug2024,,100.0/100.0,100.00%
+vasudevasn.ug2024,,100.0/100.0,100.00%
+vsurya.ug2024,,100.0/100.0,100.00%
